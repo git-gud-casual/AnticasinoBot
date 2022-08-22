@@ -20,8 +20,7 @@ logger.setLevel(logging.INFO)
 @client.on(events.NewMessage())
 async def check_message(event: events.NewMessage.Event):
     msg: Message = event.message
-    print(datetime.now())
-    if isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
+    if msg.date.weekday() != 4 and isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
         await msg.delete()
 
 
