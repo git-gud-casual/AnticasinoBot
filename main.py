@@ -1,6 +1,5 @@
 import asyncio
 import logging
-from datetime import datetime
 
 import config
 
@@ -20,8 +19,8 @@ logger.setLevel(logging.INFO)
 @client.on(events.NewMessage())
 async def check_message(event: events.NewMessage.Event):
     msg: Message = event.message
-    print(msg.date.astimezone())
-    if msg.date.astimezone().weekday() != 4 and isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
+    if msg.date.astimezone().weekday() != 4 and \
+            isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
         await msg.delete()
 
 
