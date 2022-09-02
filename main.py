@@ -19,11 +19,11 @@ logger.setLevel(logging.INFO)
 @client.on(events.NewMessage())
 async def check_message(event: events.NewMessage.Event):
     msg: Message = event.message
-    print(msg.date.day, msg.date.month, all(i in msg.text.lower() for i in ('я', 'календарь', 'переверну')), msg.text.lower())
-    if msg.date.astimezone().weekday() != 4 and \
+    date = msg.date.astimezone()
+    if date.weekday() != 4 and \
             isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
         await msg.delete()
-    elif msg.date.day == 3 and msg.date.month == 9 and all(i in msg.text.lower() for i in ('я', 'календарь', 'переверну')):
+    elif date.day == 3 and date.month == 9 and all(i in msg.text.lower() for i in ('я', 'календарь', 'переверну')):
         await msg.reply('И снова 3 сентября...')
 
 
