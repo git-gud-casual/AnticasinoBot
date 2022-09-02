@@ -22,6 +22,8 @@ async def check_message(event: events.NewMessage.Event):
     if msg.date.astimezone().weekday() != 4 and \
             isinstance(msg.media, MessageMediaDice) and msg.media.emoticon == '🎰':
         await msg.delete()
+    elif msg.date.day == 3 and msg.date.month == 9 and all(i in msg.text.lower() for i in ('я', 'календарь', 'переверну')):
+        await msg.reply('И снова 3 сентября...')
 
 
 async def startup():
